@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -42,7 +44,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		this.setSize(new Dimension(600, 400));
-		this.setTitle("TPMManager");
+		this.setTitle("TPMTool");
 		this.setLayout(new BorderLayout());
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -53,12 +55,21 @@ public class MainFrame extends JFrame {
 		menuBar = new JMenuBar();
 
 		JMenu dataMenu = new JMenu("Datei");
-		menuBar.add(dataMenu);
+		//menuBar.add(dataMenu);
 
 		JMenu infoMenu = new JMenu("Info");
 		menuBar.add(infoMenu);
 
 		JMenuItem aboutSubMenu = new JMenuItem("About");
+
+		aboutSubMenu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AboutDialog(MainFrame.this);
+
+			}
+		});
 		infoMenu.add(aboutSubMenu);
 
 		this.setJMenuBar(menuBar);
