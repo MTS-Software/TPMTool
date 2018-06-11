@@ -55,7 +55,7 @@ public class MainFrame extends JFrame {
 		menuBar = new JMenuBar();
 
 		JMenu dataMenu = new JMenu("Datei");
-		//menuBar.add(dataMenu);
+		// menuBar.add(dataMenu);
 
 		JMenu infoMenu = new JMenu("Info");
 		menuBar.add(infoMenu);
@@ -135,17 +135,17 @@ public class MainFrame extends JFrame {
 		List<Station> stationenElapsed = new ArrayList<>();
 
 		for (Anlage anlage : Service.getInstance().getAllAnlageLeerflaecheAbteilungPanelFormat()) {
+			if (anlage.isStatus())
+				for (Station station : Service.getInstance().getStationenFromAnlage(anlage)) {
 
-			for (Station station : Service.getInstance().getStationenFromAnlage(anlage)) {
+					if (station.isStatus() && station.isTpm()) {
 
-				if (station.isTpm()) {
+						if (checkStationElapsed(station))
+							stationenElapsed.add(station);
 
-					if (checkStationElapsed(station))
-						stationenElapsed.add(station);
+					}
 
 				}
-
-			}
 		}
 
 		return stationenElapsed;
