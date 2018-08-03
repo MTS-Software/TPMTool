@@ -26,6 +26,7 @@ import com.maintenance.db.dto.Anlage;
 import com.maintenance.db.dto.Station;
 import com.maintenance.db.dto.Wartung.EWartungArt;
 import com.maintenance.db.service.Service;
+import com.maintenance.util.ApplicationProperties;
 import com.maintenance.util.ProzentCalc;
 
 public class MainFrame extends JFrame {
@@ -44,7 +45,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 
 		this.setSize(new Dimension(600, 400));
-		this.setTitle("TPMTool");
+		this.setTitle("TPMTool @" + ApplicationProperties.getInstance().getProperty("db_host"));
 		this.setLayout(new BorderLayout());
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
